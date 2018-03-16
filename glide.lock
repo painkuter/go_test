@@ -1,13 +1,17 @@
-hash: ad2f2f6cf918b45f40198f3155799e0062120df7a90e494f5cce6b59ca16098a
-updated: 2018-03-14T12:42:15.191750874+03:00
-imports: []
+hash: 63f6fa3b4f910dccf150fb7d43fd06af39274148dba688a4da386ba2c6a324fd
+updated: 2018-03-15T21:57:35.2919055+03:00
+imports:
+- name: bitbucket.org/Painkuter/webparser
+  version: e583c49fac266e88864fc033323464c295dd1426
+  repo: git@bitbucket.org:Painkuter/webparser.git
+  vcs: git
 testImports:
 - name: github.com/davecgh/go-spew
-  version: 8991bc29aa16c548c550c7ff78260e27b9ab7c73
+  version: 6d212800a42e8ab5c146b8ace3490ee17e5225f9
   subpackages:
   - spew
 - name: github.com/pmezard/go-difflib
-  version: 792786c7400a136282c1664665ae0a8db921c6c2
+  version: d8ed2627bdf02c080bf22230dbb337003b7aba2d
   subpackages:
   - difflib
 - name: github.com/stretchr/testify
