@@ -1,5 +1,8 @@
 package: go_test
-import: []
+import:
+- package: bitbucket.org/Painkuter/webparser
+  repo: git@bitbucket.org:Painkuter/webparser.git
+  vcs: git
 testImport:
 - package: github.com/stretchr/testify
   version: ^1.2.1
