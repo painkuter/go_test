@@ -12,8 +12,8 @@ func test_2() {
 	runtime.GOMAXPROCS(1)
 	k := 0
 	go func() {
-		for i := 0; i < 1<<32-1; i++ {
-			time.Sleep(time.Microsecond)
+		for i := 0; i < 1<<32; i++ {
+			time.Sleep(time.Nanosecond)
 			k = i
 		}
 	}()
@@ -30,7 +30,7 @@ func test_2_2() {
 
 	k := 0
 	go func() {
-		for i := 0; i < 1<<32-1; i++ {
+		for i := 0; i < 1<<32; i++ {
 			k = i
 		}
 	}()
@@ -40,18 +40,31 @@ func test_2_2() {
 	test_2_3()
 }
 
-func test_2_3(){
+func test_2_3() {
 	// 4 procs: without sleep
 	// expects NOT full execution for goroutine
 	runtime.GOMAXPROCS(4)
 
 	k := 0
 	go func() {
-		for i := 0; i < 1<<32-1; i++ {
+		for i := 0; i < 1<<32; i++ {
 			k = i
 		}
 	}()
 	time.Sleep(time.Millisecond)
 	fmt.Println(k)
+	test_2_4()
 }
 
+func test_2_4(){
+	runtime.GOMAXPROCS(1)
+	k := 0
+	go func() {
+		for i := 0; i < 1<<16; i++ {
+			k = i
+		}
+	}()
+	fmt.Println(k)
+	time.Sleep(time.Nanosecond)
+	fmt.Println(k)
+}

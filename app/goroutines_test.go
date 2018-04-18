@@ -16,7 +16,7 @@ func TestMapInGoroutines(t *testing.T) {
 	size := 1<<10
 	for i := 0; i < size; i++ {
 		go func() {
-			mutex.Lock()
+			//mutex.Lock()
 			m[i]++
 			mutex.Unlock()
 		}()
