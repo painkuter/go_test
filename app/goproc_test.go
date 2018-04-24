@@ -3,60 +3,65 @@ package app
 import (
 	"fmt"
 	"runtime"
+	"testing"
 	"time"
+
+	"github.com/stretchr/testify/assert"
 )
 
-func test_2() {
+func TestSingleProcWithSleep(t *testing.T) {
 	// 1 proc: with sleep
 	// expects NOT full execution for goroutine
 	runtime.GOMAXPROCS(1)
 	k := 0
+	size := 1 << 32
 	go func() {
-		for i := 0; i < 1<<32; i++ {
+		for i := 0; i < size; i++ {
 			time.Sleep(time.Nanosecond)
 			k = i
 		}
 	}()
 	time.Sleep(time.Millisecond)
-	fmt.Println(k)
 
-	test_2_2()
+	assert.True(t, k*1000 < size)
 }
 
-func test_2_2() {
+func TestSingleProcWithoutSleep(t *testing.T) {
 	// 1 proc: without sleep
 	// expects full execution for goroutine
 	runtime.GOMAXPROCS(1)
 
 	k := 0
+	size := 1 << 32
 	go func() {
-		for i := 0; i < 1<<32; i++ {
+		for i := 0; i < size; i++ {
 			k = i
 		}
 	}()
 	time.Sleep(time.Millisecond)
-	fmt.Println(k)
 
-	test_2_3()
+	assert.Equal(t, k, size-1)
 }
 
-func test_2_3() {
+func TestFourProcWithoutSleep(t *testing.T) {
 	// 4 procs: without sleep
 	// expects NOT full execution for goroutine
 	runtime.GOMAXPROCS(4)
 
 	k := 0
+	size := 1 << 32
 	go func() {
-		for i := 0; i < 1<<32; i++ {
+		for i := 0; i < size; i++ {
 			k = i
 		}
 	}()
 	time.Sleep(time.Millisecond)
-	fmt.Println(k)
-	test_2_4()
+
+	assert.True(t, k*1000 < size)
+
 }
 
-func test_2_4(){
+func TestAdditional(t *testing.T) {
 	runtime.GOMAXPROCS(1)
 	k := 0
 	go func() {

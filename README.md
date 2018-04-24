@@ -1,2 +1,6 @@
 # go_test
-curl https://glide.sh/get | sh
+##### Dependencies
+`go get -u github.com/golang/dep/cmd/dep`
+
+`dep ensure`
+
