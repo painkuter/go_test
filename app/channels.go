@@ -37,4 +37,6 @@ func test_3() {
 		}
 	}
 	<-done
+
+	//TODO: check output?
 }

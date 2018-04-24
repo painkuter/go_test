@@ -16,14 +16,14 @@ func TestMapInGoroutines(t *testing.T) {
 	size := 1<<10
 	for i := 0; i < size; i++ {
 		go func() {
-			//mutex.Lock()
+			mutex.Lock()
 			m[i]++
 			mutex.Unlock()
 		}()
 	}
 
 	time.Sleep(100 * time.Millisecond)
-	fmt.Printf("Len = %v\n", len(m))
+	fmt.Printf("Len = %v,\t size = %v\n", len(m), size)
 
 	assert.Equal(t, len(m)<size, true)
 }
