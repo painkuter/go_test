@@ -5,9 +5,9 @@ import (
 	"time"
 )
 
-func test_4(){
+func test_4() {
 	var k int
-	for i := 0; i < 1<<6; i ++{
+	for i := 0; i < 1<<6; i++ {
 		//i_ := i
 		go func(j int) {
 			k = j
