@@ -17,11 +17,10 @@ func main(){
 	err = db.Insert(&g)
 	if err!= nil{
 		panic(err)
-	}*/
+	}
 
 	bg := BookGenre{BookId:1, GenreId:1}
-	err := db.Insert(&bg)
-	if err!= nil{
+	if err := db.Insert(&bg); err!= nil{
 		panic(err)
-	}
+	}*/
 }

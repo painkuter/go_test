@@ -19,14 +19,19 @@ func Connect() *pg.DB {
 func CreateSchema(db *pg.DB, temp, ifNotExists bool) error {
 
 	for _, model := range []interface{}{
-		(*Genre)(nil),
-		(*Image)(nil),
-		(*Author)(nil),
-		(*BookGenre)(nil),
-		(*Book)(nil),
-		(*BookWithCommentCount)(nil),
-		(*Translation)(nil),
-		(*Comment)(nil),
+		// (*Genre)(nil),
+		// (*Image)(nil),
+		// (*Author)(nil),
+		// (*BookGenre)(nil),
+		// (*Book)(nil),
+		// (*BookWithCommentCount)(nil),
+		// (*Translation)(nil),
+		// (*Comment)(nil),
+
+		(*Company)(nil),
+		(*User)(nil),
+		(*CompanyUser)(nil),
+
 	} {
 		err := db.CreateTable(model, &orm.CreateTableOptions{
 			Temp:        temp,

@@ -42,9 +42,9 @@ func (a Author) String() string {
 type BookGenre struct {
 	//tableName struct{} `sql:"alias:bg"` // custom table alias
 
-	BookId  int `sql:",pk"` // pk tag is used to mark field as primary key
+	BookId  int  // pk tag is used to mark field as primary key
 	Book    *Book
-	GenreId int `sql:",pk"`
+	GenreId int
 	Genre   *Genre
 
 	Genre_Rating int // belongs to and is copied to Genre model
