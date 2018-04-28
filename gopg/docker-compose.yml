@@ -1,0 +1,10 @@
+version: '2'
+services:
+    database:
+        image: postgres:10
+        environment:
+            - "POSTGRES_USER=books"
+            - "POSTGRES_PASSWORD=111"
+            - "POSTGRES_DB=books"
+        ports:
+            - "5433:5432"

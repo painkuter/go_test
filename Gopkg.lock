@@ -8,6 +8,31 @@
   version = "v1.1.0"
 
 [[projects]]
+  name = "github.com/go-kit/kit"
+  packages = ["endpoint"]
+  revision = "ca4112baa34cb55091301bdc13b1420a122b1b9e"
+  version = "v0.7.0"
+
+[[projects]]
+  name = "github.com/go-pg/pg"
+  packages = [
+    ".",
+    "internal",
+    "internal/parser",
+    "internal/pool",
+    "orm",
+    "types"
+  ]
+  revision = "5b73ce88484575f3480edf393237f6bf79d5f166"
+  version = "v6.11.2"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/jinzhu/inflection"
+  packages = ["."]
+  revision = "04140366298a54a039076d798123ffa108fff46c"
+
+[[projects]]
   name = "github.com/pmezard/go-difflib"
   packages = ["difflib"]
   revision = "792786c7400a136282c1664665ae0a8db921c6c2"
@@ -22,6 +47,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "dbc03d7c9dd4e54b6993c8ece59c3174becb58bd828e500cf8ad825e340278c4"
+  inputs-digest = "76335cdebf25807a2036f3f409b38e209b8eb38c84f757c3c51030d563423578"
   solver-name = "gps-cdcl"
   solver-version = 1
