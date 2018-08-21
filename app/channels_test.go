@@ -2,10 +2,11 @@ package app
 
 import (
 	"fmt"
+	"testing"
 	"time"
 )
 
-func test_3() {
+func Test_3(t *testing.T) {
 	var done = make(chan bool, 1)
 	var timer = make(chan bool, 1)
 
@@ -39,4 +40,18 @@ func test_3() {
 	<-done
 
 	//TODO: check output?
+}
+
+func TestWriteToClosedChannelBuffered(t *testing.T) {
+	var ch = make(chan bool, 1)
+	ch <- true
+	close(ch)
+	ch <- true
+}
+
+func TestWriteToClosedChannel(t *testing.T) {
+	var ch = make(chan bool)
+	ch <- true
+	close(ch)
+	ch <- true
 }
