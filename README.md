@@ -12,3 +12,8 @@ curl https://glide.sh/get | sh
 0. bytes.Buffer
 0. kafka producer
 0.  
+##### Dependencies
+`go get -u github.com/golang/dep/cmd/dep`
+
+`dep ensure`
+

@@ -38,4 +38,20 @@ func TestChannels(t *testing.T) {
 		}
 	}
 	<-done
+
+	//TODO: check output?
+}
+
+func TestWriteToClosedChannelBuffered(t *testing.T) {
+	var ch = make(chan bool, 1)
+	ch <- true
+	close(ch)
+	ch <- true
+}
+
+func TestWriteToClosedChannel(t *testing.T) {
+	var ch = make(chan bool)
+	ch <- true
+	close(ch)
+	ch <- true
 }
