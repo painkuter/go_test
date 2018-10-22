@@ -2,10 +2,11 @@ package app
 
 import (
 	"fmt"
+	"testing"
 	"time"
 )
 
-func test_3() {
+func TestChannels(t *testing.T) {
 	var done = make(chan bool, 1)
 	var timer = make(chan bool, 1)
 
