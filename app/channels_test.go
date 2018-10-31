@@ -2,6 +2,7 @@ package app
 
 import (
 	"fmt"
+	"runtime"
 	"testing"
 	"time"
 )
@@ -42,16 +43,28 @@ func TestChannels(t *testing.T) {
 	//TODO: check output?
 }
 
-func TestWriteToClosedChannelBuffered(t *testing.T) {
-	var ch = make(chan bool, 1)
+func TestWriteToClosedChannelBuffered(t *testing.T) { // expected panic
+	ch := make(chan bool, 1)
 	ch <- true
 	close(ch)
 	ch <- true
 }
 
-func TestWriteToClosedChannel(t *testing.T) {
-	var ch = make(chan bool)
+func TestWriteToClosedChannel(t *testing.T) { // expected lock
+	ch := make(chan bool)
 	ch <- true
 	close(ch)
 	ch <- true
+}
+
+func TestCh(t *testing.T) { // expected lock
+	ch := make(chan bool)
+	go func() {
+		time.Sleep(100*time.Millisecond)
+		runtime.Gosched()
+		runtime.LockOSThread()
+		runtime.Version()
+	}()
+	ch <- true
+	// ch <- false
 }

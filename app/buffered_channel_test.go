@@ -8,6 +8,8 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+var jj = 0
+
 func TestBufferedChannel(t *testing.T) {
 	assert.Equal(t, 1, 1)
 
@@ -24,10 +26,10 @@ func TestBufferedChannel(t *testing.T) {
 	case <-ch:
 		fmt.Println("ch")
 	}
-	fmt.Println(j)
+	fmt.Println(jj)
 }
 
 func exe() {
 	time.Sleep(10 * time.Millisecond)
-	j++
+	jj++
 }

@@ -1,30 +1,52 @@
 package app
 
 import (
-	"sync"
+	"fmt"
+	"runtime"
+	"sync/atomic"
 	"testing"
 	"time"
-
-	"github.com/stretchr/testify/assert"
 )
 
-var j int
-
 func TestAsyncExec(t *testing.T) {
-	assert.Equal(t, 1, 1)
+	j := int64(0)
 
-	var wg sync.WaitGroup
-	for i := 0; i < 1000; i++ {
-		wg.Add(1)
-		go func() {
-			exec()
-		}()
-		wg.Done()
+	taskCount := 100
+	maxGoroutines := 14
+
+	concurrentGoroutines := make(chan struct{}, maxGoroutines)
+
+	for i := 0; i < maxGoroutines; i++ {
+		concurrentGoroutines <- struct{}{}
 	}
-	wg.Wait()
+
+	// done := make(chan bool)
+
+	/*	waitForAllJobs := make(chan bool)
+
+		go func() {
+
+			waitForAllJobs <- true
+		}()
+	*/
+	for i := 0; i < taskCount; i++ {
+		<-concurrentGoroutines
+		go func() {
+			exec(&j)
+			// done <- true
+		}()
+	}
+
+	// for i := 0; i < taskCount; i++ {
+	// 	<-done
+	// 	concurrentGoroutines <- struct{}{}
+	// }
+
+	// <-waitForAllJobs
 }
 
-func exec() {
+func exec(j *int64) {
 	time.Sleep(10 * time.Millisecond)
-	j++
+	atomic.AddInt64(j, 1)
+	fmt.Println(runtime.NumGoroutine())
 }
