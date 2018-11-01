@@ -1,7 +1,16 @@
 package main
 
-import "go_test/app"
+import (
+	"fmt"
+	"log"
+	"net/http"
+)
+
+func handler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Hi there, I love %s!", r.URL.Path[1:])
+}
 
 func main() {
-	app.Main()
+	http.HandleFunc("/", handler)
+	log.Fatal(http.ListenAndServe(":8100", nil))
 }
