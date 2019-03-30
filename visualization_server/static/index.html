@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+
+    <script>
+
+        $.getJSON('/results', function (data) {
+            // Create the chart
+            window.console.log(data);
+
+            let series = [];
+            for (i = 0; i < data.length; i ++) {
+                let elem = {};
+                elem.name = i;
+                elem.data = data[i];
+                series.push(elem);
+            }
+
+            Highcharts.chart('container', {
+
+
+                rangeSelector: {
+                    selected: 1
+                },
+
+                title: {
+                    text: 'results'
+                },
+
+                series: series
+/*                series: [{
+                    name: 'Memory',
+                    data: data[0],
+                    tooltip: {
+                        valueDecimals: 2
+                    }
+                }]*/
+            });
+        });
+    </script>
+</head>
+<body>
+Test
+<div id="container" style="height: 400px; min-width: 310px"></div>
+</body>
+</html>
