@@ -31,7 +31,7 @@ var (
 func createFile() {
 	t := time.Now()
 	ts := strconv.FormatInt(t.UnixNano(), 10)
-	pc, _, line, ok := runtime.Caller(5)
+	pc, _, line, ok := runtime.Caller(4)
 	if !ok {
 		panic("fmt init runtime.caller")
 	}

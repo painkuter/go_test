@@ -11,6 +11,22 @@ const (
 	size = 10000
 )
 
+func TestJustCopyWithoutGC(t *testing.T) {
+	m1 := newTestMap()
+	m2 := make(map[int]string)
+	_ = m2
+	var i int
+	for k := range m1 {
+		i++
+
+		m2[k] = m1[k]
+		if i%100 == 0 {
+			PrintMemUsage()
+		}
+	}
+	PrintMemUsage()
+}
+
 func TestJustCopy(t *testing.T) {
 	m1 := newTestMap()
 	m2 := make(map[int]string)
@@ -59,6 +75,22 @@ func TestDelete(t *testing.T) {
 		}
 	}
 	eatATwix()
+}
+
+func TestCopyByPointerWithoutGC(t *testing.T) {
+	m1 := newPointerTestMap()
+	m2 := make(map[int]*string)
+	_ = m2
+	var i int
+	for k := range m1 {
+		i++
+
+		m2[k] = m1[k]
+		if i%100 == 0 {
+			PrintMemUsage()
+		}
+	}
+	PrintMemUsage()
 }
 
 func TestJustCopyByPointer(t *testing.T) {
