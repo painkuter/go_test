@@ -15,15 +15,6 @@
 
         $.getJSON('/results', function (data) {
             // Create the chart
-            window.console.log(data);
-
-            let series = [];
-            for (i = 0; i < data.length; i ++) {
-                let elem = {};
-                elem.name = i;
-                elem.data = data[i];
-                series.push(elem);
-            }
 
             Highcharts.chart('container', {
 
@@ -36,14 +27,7 @@
                     text: 'results'
                 },
 
-                series: series
-/*                series: [{
-                    name: 'Memory',
-                    data: data[0],
-                    tooltip: {
-                        valueDecimals: 2
-                    }
-                }]*/
+                series: data
             });
         });
     </script>

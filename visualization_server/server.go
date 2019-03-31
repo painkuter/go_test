@@ -13,6 +13,10 @@ import (
 	"github.com/gorilla/mux"
 )
 
+const (
+	resultsDir = "results"
+)
+
 // This is application for visualization of experiments results
 // PLAN:
 // Read all files from group to memory
@@ -20,9 +24,12 @@ import (
 // Select needed values
 // Serve it
 
-const (
-	resultsDir = "results"
-)
+type resultResponse []series
+
+type series struct {
+	Name string    `json:"name"`
+	Data []float64 `json:"data"`
+}
 
 func main() {
 	r := mux.NewRouter()
@@ -32,7 +39,10 @@ func main() {
 		http.StripPrefix("/static/", http.FileServer(http.Dir("visualization_server/static"))))
 
 	fmt.Println("Server is listening...")
-	http.ListenAndServe(":8181", r)
+	err := http.ListenAndServe(":8181", r)
+	if err != nil {
+		panic(err)
+	}
 }
 
 func getResults(w http.ResponseWriter, r *http.Request) {
@@ -44,12 +54,13 @@ func getResults(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	var data [][]string
+	//var data [][]string
+	data := make(map[string][][]string)
 	for _, f := range files {
-		data = dataFromFile("./" + resultsDir + "/" + f.Name())
+		data[f.Name()] = dataFromFile("./" + resultsDir + "/" + f.Name())
 	}
 
-	buf, err := json.Marshal(convertToSeries(data))
+	buf, err := json.Marshal(convertWithFileName(data))
 	if err != nil {
 		panic(err)
 	}
@@ -72,12 +83,50 @@ func dataFromFile(fileName string) [][]string {
 	return data
 }
 
-func convertToSeries(data [][]string) [][]float64 {
+func convertWithFileName(data map[string][][]string) resultResponse {
+	var result resultResponse
+	for k, v := range data {
+		result = append(result, convertToSeries(v, k)...)
+	}
+	return result
+}
+
+func convertToSeries(data [][]string, name string) resultResponse {
 	count := len(data[0]) // number of series
+	if count == 0 || len(data) == 0 {
+		panic("Empty data or data[0]")
+	}
+
+	var result2 resultResponse
+
 	result := make([][]float64, count)
 	for i := 0; i < count; i++ {
 		arr := make([]float64, len(data))
 		result[i] = arr
+	}
+
+	// check keys
+	var keys []string
+	_, err := strconv.ParseFloat(data[0][0], 64)
+	if err != nil {
+		keys = data[0]
+		data = data[1:]
+	} else {
+		for i := 0; i < 0; i++ {
+			keys = append(keys, strconv.Itoa(i))
+		}
+	}
+
+	// add file name
+	for i := range keys {
+		keys[i] = name + ":" + keys[i]
+	}
+
+	// create items
+
+	for i := 0; i < count; i++ {
+		arr := make([]float64, len(data))
+		result2 = append(result2, series{Name: keys[i], Data: arr})
 	}
 
 	for k1, v1 := range data {
@@ -86,10 +135,10 @@ func convertToSeries(data [][]string) [][]float64 {
 			if err != nil {
 				panic(err)
 			}
-			result[k2][k1] = value
+			result2[k2].Data[k1] = value
 		}
 	}
-	return result
+	return result2
 }
 
 func convertToMap(data [][]float64) map[string][]float64 {
@@ -99,3 +148,7 @@ func convertToMap(data [][]float64) map[string][]float64 {
 	}
 	return result
 }
+
+//func checkKeys(data [][]string) []string {
+//
+//}

@@ -13,3 +13,9 @@ func TestSliceCopy(t *testing.T) {
 
 	assert.Equal(t, []string{"c", "d", "g", "h"}, bar)
 }
+
+func TestDeleteFromSlice(t *testing.T) {
+	data := []string{"a", "b", "c"}
+	data = data[1:]
+	assert.Equal(t, []string{"b", "c"}, data)
+}
