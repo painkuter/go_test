@@ -3,6 +3,7 @@ package result
 import (
 	"encoding/csv"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"runtime"
 	"strconv"
@@ -28,21 +29,38 @@ var (
 	//keys            []string
 )
 
+func init() {
+	_, err := ioutil.ReadDir("../" + resultsDir)
+	if err != nil {
+		os.Mkdir("../"+resultsDir, 0777)
+	}
+}
+
 func createFile() {
 	t := time.Now()
 	ts := strconv.FormatInt(t.UnixNano(), 10)
 	pc, _, line, ok := runtime.Caller(4)
 	if !ok {
-		panic("fmt init runtime.caller")
+		//pc, _, line, ok = runtime.Caller(4)
+		//if !ok {
+		//	panic("fmt init runtime.caller")
+		//}
 	}
 
 	function := runtime.FuncForPC(pc)
 	functionName := function.Name()
 
 	s := strings.Split(functionName, "go_test/")
-
+	fmt.Println(s)
 	//fileName = filepath.Base(caller) + "_" + strconv.Itoa(line) + "_" + ts + ".csv"
-	fileName = s[1] + "_" + strconv.Itoa(line) + "_" + ts + ".csv"
+
+	var name string
+	if len(s) > 1 {
+		name = s[1]
+	} else {
+		name = s[0]
+	}
+	fileName = name + "_" + strconv.Itoa(line) + "_" + ts + ".csv"
 
 	var err error
 	file, err = os.Create("../" + resultsDir + "/" + fileName)
