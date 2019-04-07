@@ -32,7 +32,10 @@ var (
 func init() {
 	_, err := ioutil.ReadDir("../" + resultsDir)
 	if err != nil {
-		os.Mkdir("../"+resultsDir, 0777)
+		err := os.Mkdir("../"+resultsDir, 0777)
+		if err != nil {
+			panic(err)
+		}
 	}
 }
 
