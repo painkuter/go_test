@@ -12,8 +12,10 @@ import (
 )
 
 const (
-	resultsDir = "results"
+	resultsDirDefault = "results"
 )
+
+var resultsDir string
 
 // get caller for directory name
 // get time for name
@@ -30,8 +32,12 @@ var (
 )
 
 func init() {
+	resultsDir = resultsDirDefault
+	fmt.Println("Init")
 	_, err := ioutil.ReadDir("../" + resultsDir)
 	if err != nil {
+		fmt.Println(err)
+		fmt.Println("Creating resluts directory")
 		err := os.Mkdir("../"+resultsDir, 0777)
 		if err != nil {
 			panic(err)
@@ -39,7 +45,12 @@ func init() {
 	}
 }
 
+func setupResultsDir(s string) {
+
+}
+
 func createFile() {
+	fmt.Println("Creating file for results")
 	t := time.Now()
 	ts := strconv.FormatInt(t.UnixNano(), 10)
 	pc, _, line, ok := runtime.Caller(4)
