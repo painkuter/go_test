@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	"sort"
 	"strings"
 )
 
@@ -31,7 +32,12 @@ func main() {
 	}
 
 	fmt.Println("len=", len(m))
+	r := make([]string, 0, len(m))
 	for key := range m {
-		fmt.Println(key)
+		r = append(r, key)
+	}
+	sort.Strings(r)
+	for _, value := range r {
+		fmt.Println(value)
 	}
 }

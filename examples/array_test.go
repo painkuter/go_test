@@ -12,3 +12,8 @@ func TestSliceAppend(t *testing.T) {
 	}
 	fmt.Println(m)
 }
+
+func TestSlice(t *testing.T) {
+	s := []string{"a", "b", "c"}
+	fmt.Println(s[:len(s)-1])
+}
