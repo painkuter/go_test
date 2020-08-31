@@ -1,5 +1,7 @@
 module go_test
 
+go 1.15
+
 require (
 	github.com/davecgh/go-spew v1.1.0
 	github.com/go-pg/pg v6.11.2+incompatible
