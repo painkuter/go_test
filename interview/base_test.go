@@ -51,9 +51,7 @@ func (e *customError) Error() string {
 }
 
 func test() *customError {
-	{
-		println("from test()")
-	}
+	println("from test()")
 	return nil
 }
 
