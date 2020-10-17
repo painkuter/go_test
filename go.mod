@@ -3,9 +3,10 @@ module go_test
 go 1.15
 
 require (
-	github.com/davecgh/go-spew v1.1.0
+	github.com/davecgh/go-spew v1.1.1
 	github.com/go-pg/pg v6.11.2+incompatible
 	github.com/jinzhu/inflection v0.0.0-20180308033659-04140366298a
 	github.com/pmezard/go-difflib v1.0.0
-	github.com/stretchr/testify v1.2.1
+	github.com/stretchr/testify v1.4.0
+	github.com/utrack/clay/v2 v2.4.9 // indirect
 )
