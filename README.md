@@ -1,10 +1,13 @@
 # go_test
-curl https://glide.sh/get | sh
 
-0. Parallel execution
-0. iota
-0. Panic recovering
-0. wg
+### Kafka
+#### Consumer
+
+
+```
+cp kafka/.env.example kafka/.env
+make consume
+```
 
 ## TODO
 
