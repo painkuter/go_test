@@ -18,7 +18,7 @@ import (
 
 const (
 	envFilePath = "./kafka/.env"
-	outputFile  = "out6"
+	outputFile  = "output2"
 	clientName  = "skutepov"
 )
 
@@ -37,23 +37,25 @@ var (
 	output        *os.File
 )
 
+type Args struct{}
+
+func Consume(args Args) {}
+
 func main() {
 	flag.Parse()
 	_ = godotenv.Load(envFilePath)
 	var (
 		brokerList = flag.String("brokers", os.Getenv("KAFKA_PEERS"), "The comma separated list of brokers in the Kafka cluster")
 	)
-	topic = flag.String("topic", os.Getenv("KAFKA_TOPIC"), "REQUIRED: the topic to consume")
-
 	if *toFile {
 		var err error
 		output, err = os.OpenFile(outputFile, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0666)
-		//output, err = os.OpenFile(*brokerList[0], os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0666)
 		if err != nil {
 			printErrorAndExit(1, "Failed to create  output file: %s", err)
 		}
 		defer output.Close()
 	}
+	topic = flag.String("topic", os.Getenv("KAFKA_TOPIC"), "REQUIRED: the topic to consume")
 
 	if *brokerList == "" {
 		printUsageErrorAndExit("You have to provide -brokers as a comma-separated list, or set the KAFKA_PEERS environment variable.")
@@ -184,25 +186,10 @@ func printUsageErrorAndExit(format string, values ...interface{}) {
 func printMessage(msg *sarama.ConsumerMessage) {
 	if *toFile {
 		_, err := output.WriteString(fmt.Sprintf("Partition:\t%d\n", msg.Partition))
-		if err != nil {
-			printErrorAndExit(69, "Error writing to the file: %s ", err)
-		}
 		_, err = output.WriteString(fmt.Sprintf("Offset:\t%d\n", msg.Offset))
-		if err != nil {
-			printErrorAndExit(69, "Error writing to the file: %s ", err)
-		}
 		_, err = output.WriteString(fmt.Sprintf("Key:\t%s\n", string(msg.Key)))
-		if err != nil {
-			printErrorAndExit(69, "Error writing to the file: %s ", err)
-		}
 		_, err = output.WriteString(fmt.Sprintf("Timestamp:\t%s\n", msg.Timestamp))
-		if err != nil {
-			printErrorAndExit(69, "Error writing to the file: %s ", err)
-		}
 		_, err = output.WriteString(fmt.Sprintf("Value:\t%s\n", string(msg.Value)))
-		if err != nil {
-			printErrorAndExit(69, "Error writing to the file: %s ", err)
-		}
 		_, err = output.WriteString(fmt.Sprintln())
 		if err != nil {
 			printErrorAndExit(69, "Error writing to the file: %s ", err)
