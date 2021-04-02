@@ -7,6 +7,16 @@ import (
 	"time"
 )
 
+func Test0(t *testing.T) {
+	var m = map[int]int{}
+	_, ok := m[1]
+	if ok {
+		fmt.Println("OK")
+	}
+	m[2] = 3
+	fmt.Println("END")
+}
+
 func Test1(t *testing.T) {
 	// Что выведет?
 	names := []string{"john", "dave", "mike"}
@@ -16,7 +26,18 @@ func Test1(t *testing.T) {
 			println(names[i])
 		}()
 	}
-	//	time.Sleep(time.Second)
+}
+
+func Test1_1(t *testing.T) {
+	// Что выведет?
+	names := []string{"john", "dave", "mike"}
+
+	for i := range names {
+		go func() {
+			println(names[i])
+		}()
+	}
+	time.Sleep(time.Second)
 }
 
 func Test2(t *testing.T) {
