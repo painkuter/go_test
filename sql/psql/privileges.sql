@@ -7,6 +7,8 @@ WHERE d.datname = (SELECT current_database());
 -- grant
 grant all privileges on database dbname to user_name;
 grant SELECT ON ALL TABLES IN SCHEMA public to user_name;
+GRANT USAGE ON SCHEMA public TO my_user;
+
 
 -- selected table privileges
 SELECT grantee, privilege_type

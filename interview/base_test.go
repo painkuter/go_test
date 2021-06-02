@@ -167,5 +167,3 @@ func BenchmarkSumBackward(b *testing.B) {
 		_ = sum
 	}
 }
-
-//
