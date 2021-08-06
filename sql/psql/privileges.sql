@@ -14,3 +14,6 @@ GRANT USAGE ON SCHEMA public TO my_user;
 SELECT grantee, privilege_type
 FROM information_schema.role_table_grants
 WHERE table_name='table_name';
+
+-- sequences
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO "user-name";
