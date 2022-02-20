@@ -46,3 +46,12 @@ func withoutPointer() {
 	fmt.Println(firstMap[1].cnt)
 	fmt.Println(secondMap[2].cnt)
 }
+
+func TestMapLen(t *testing.T) {
+	m := make(map[int]struct{}, 10)
+	m[1] = struct{}{}
+	m[2] = struct{}{}
+	m[3] = struct{}{}
+
+	fmt.Println(len(m))
+}
