@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"testing"
 	"time"
+
+	"github.com/stretchr/testify/assert"
 )
 
 const (
@@ -12,11 +14,11 @@ const (
 )
 
 func TestFromExt(t *testing.T) {
-	expected := toTime(63781153200)
+	expected := toTime(63780807540)
 	fmt.Println(expected.String())
-	//actual := MustParseDatetime("2022-02-18 18:59:00")
-	//fmt.Println(actual.String())
-	//assert.Equal(t, expected, actual)
+	actual := MustParseDatetime("2022-02-18 18:59:00")
+	fmt.Println(actual.String())
+	assert.Equal(t, expected, actual)
 }
 
 // time.Time.ext to time.Time
