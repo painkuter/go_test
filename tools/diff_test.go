@@ -10,11 +10,11 @@ import (
 
 // элементы, которые есть только во втором массиве, но нет в первом
 func TestDiff(t *testing.T) {
-	f1, err := ioutil.ReadFile("item")
+	f1, err := ioutil.ReadFile("arr1")
 	if err != nil {
 		panic(err)
 	}
-	f2, err := ioutil.ReadFile("product_search")
+	f2, err := ioutil.ReadFile("arr2")
 	if err != nil {
 		panic(err)
 	}
