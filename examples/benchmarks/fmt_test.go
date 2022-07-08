@@ -17,3 +17,20 @@ func BenchmarkPlus(b *testing.B) {
 		_ = "qwerty" + "-" + strconv.Itoa(123456)
 	}
 }
+
+func BenchmarkConst(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		write2()
+	}
+}
+
+func write1() {
+	const msg1 = "test message"
+	_ = fmt.Sprintln(msg1)
+}
+
+const msg2 = "test message"
+
+func write2() {
+	_ = fmt.Sprintln(msg2)
+}
