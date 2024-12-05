@@ -1,24 +1,31 @@
 module go_test
 
-go 1.17
+go 1.19
 
 require (
 	github.com/Shopify/sarama v1.28.0
 	github.com/astaxie/beego v1.12.3
+	github.com/davecgh/go-spew v1.1.1
+	github.com/go-chi/chi v1.5.4
+	github.com/go-chi/cors v1.2.1
 	github.com/go-pg/pg v6.11.2+incompatible
 	github.com/go-redis/redis/v8 v8.11.5
 	github.com/golang/geo v0.0.0-20210211234256-740aa86cb551
 	github.com/gorilla/mux v1.8.0
 	github.com/joho/godotenv v1.3.0
+	github.com/kelindar/bitmap v1.2.0
+	github.com/opentracing/opentracing-go v1.2.0
+	github.com/otiai10/gosseract/v2 v2.3.1
 	github.com/rcrowley/go-metrics v0.0.0-20201227073835-cf1acfcdf475
+	github.com/speps/go-hashids/v2 v2.0.1
 	github.com/stretchr/testify v1.7.0
 	go.etcd.io/etcd/pkg/v3 v3.5.2
+	golang.org/x/sync v0.1.0
 )
 
 require (
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
-	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/eapache/go-resiliency v1.2.0 // indirect
 	github.com/eapache/go-xerial-snappy v0.0.0-20180814174437-776d5712da21 // indirect
@@ -34,6 +41,7 @@ require (
 	github.com/jcmturner/rpc/v2 v2.0.3 // indirect
 	github.com/jinzhu/inflection v0.0.0-20180308033659-04140366298a // indirect
 	github.com/klauspost/compress v1.11.7 // indirect
+	github.com/klauspost/cpuid/v2 v2.0.9 // indirect
 	github.com/matttproud/golang_protobuf_extensions v1.0.1 // indirect
 	github.com/pierrec/lz4 v2.6.0+incompatible // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
