@@ -1,0 +1,87 @@
+id	parent	name	en_name
+10000	0	Земля	Earth
+138	10000	Австралия и Океания	Australia and Oceania
+139	138	Новая Зеландия	New Zealand
+10147	139	Веллингтон	Wellington
+20873	139	Крайстчерч	Christchurch
+21368	139	Окленд	Auckland
+111998	139	Гамильтон	Hamilton
+113849	139	Данидин	Dunedin
+113850	139	Куинстаун	Queenstown
+113851	139	Палмерстон-Норт	Palmerston North
+113852	139	Тауранга	Tauranga
+113853	139	Нью-Плимут	New Plymouth
+113854	139	Нельсон	Nelson
+113855	139	Нейпир	Napier
+113856	139	Тимару	Timaru
+113857	139	Инверкаргилл	Invercargill
+113858	139	Хейстингс	Hastings
+113859	139	Каитаиа	Kaitaia
+113860	139	Фангареи	Whangarei
+113861	139	Роторуа	Rotorua
+113862	139	Таупо	Taupo
+113863	139	Бленхейм	Blenheim
+113864	139	Факатане	Whakatane
+113865	139	Хокитика	Hokitika
+113866	139	Уонгануи	Wanganui
+113867	139	Гисборн	Gisborne
+113868	139	Ванака	Wanaka
+113869	139	Оамару	Oamaru
+113870	139	Керайкри	Kerikeri
+113871	139	Те-Анау	Te Anau
+113872	139	Милфорд-Саунд	Milford Sound
+123222	139	Пейхия	Paihia
+123439	139	Каикоура	Kaikoura
+123525	139	Пиктон	Picton
+123586	139	Ханмер-Спрингс	Hanmer Springs
+145481	139	Акароа	Akaroa
+145482	139	Арроутаун	Arrowtown
+145483	139	Ашбертон	Ashburton
+145484	139	Греймут	Greymouth
+145485	139	Мотука	Motueka
+145486	139	Рассел	Russell
+145487	139	Туранджи	Turangi
+145488	139	Уонгамата	Whangamata
+145489	139	Уайтайанга	Whitianga
+211	138	Австралия	Australia
+21594	211	Остров Рождества	Christmas Island
+111788	21594	Флайинг-Фиш-Коув	Flying Fish Cove
+21761	211	Новый Южный Уэльс	New South Wales
+10145	21761	Сидней	Sydney
+21762	21761	Брокен Хилл	Broken Hill
+94774	21761	Ньюкасл	Newcastle
+111021	21761	Вуллонгонг	Wollongong
+111024	21761	Госфорд	Gosford
+111025	21761	Баллина	Ballina
+111030	21761	Катумба	Katoomba
+111032	21761	Киама	Kiama
+111035	21761	Олбери	Albury
+111038	21761	Нора	Nowra
+111040	21761	Кума	Cooma
+111042	21761	Лисмор	Lismore
+111043	21761	Боурал	Bowral
+111045	21761	Графтон	Grafton
+111048	21761	Синглтон	Singleton
+111049	21761	Кофс-Харбор	Coffs Harbour
+111050	21761	Порт Маккуори	Port Macquarie
+111051	21761	Пенрит	Penrith
+111052	21761	Батманс Бэй	Batemans Bay
+111055	21761	Голберн	Goulburn
+111056	21761	Сеснок	Cessnock
+111057	21761	Кемпси	Kempsey
+111058	21761	Батерст	Bathurst
+111061	21761	Армидейл	Armidale
+111067	21761	Моруя	Moruya
+111069	21761	Масуэллбрук	Muswellbrook
+111079	21761	Ричмонд	Richmond
+111081	21761	Литго	Lithgow
+111082	21761	Паркс	Parkes
+111095	21761	Сотелл	Sawtell
+111100	21761	Маджи	Mudgee
+111101	21761	Уогга-Уогга	Wagga Wagga
+111108	21761	Хазелбрук	Hazelbrook
+111109	21761	Лоусон	Lawson
+111116	21761	Гриффит	Griffith
+111119	21761	Казино	Casino
+111121	21761	Даббо	Dubbo
+111123	21761	Тамворт	Tamworth
